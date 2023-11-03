@@ -1,5 +1,6 @@
 import 'package:admin_coffee_app/Screens/authScreens/login_screen.dart';
 import 'package:admin_coffee_app/Screens/consts.dart';
+import 'package:admin_coffee_app/Screens/users_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +16,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List pages = const [
     DashboardScreen(),
-    Center(child: Text("Page Two")),
+    UsersScreen(),
     Center(child: Text("Page Three")),
     Center(child: Text("Page Four")),
     Center(child: Text("Page Five")),
     Center(child: Text("Page Six")),
   ];
-  int index = 0;
+  int index = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +144,99 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius:
                 BorderRadius.all(Radius.circular(size.height * 0.05)),
               ),
-              child: pages[index],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: size.width,
+                    height: size.height * 0.06,
+                    padding: EdgeInsets.symmetric(horizontal: size.height * 0.02),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Icon(Icons.notifications),
+                                  Positioned(
+                                    top: 0,
+                                    left: 0,
+                                    child: Container(
+                                      width: size.height * 0.015,
+                                      height: size.height * 0.015,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Text(
+                                "Notifications",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: size.height * 0.02),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: size.height * 0.035),
+                        InkWell(
+                          onTap: () {},
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.settings),
+                              Text(
+                                "Settings",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: size.height * 0.02),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: size.height * 0.035),
+                        InkWell(
+                          onTap: () {},
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: mainColor,
+                                radius: 13,
+                              ),
+                              SizedBox(width: size.height * 0.015),
+                              Text(
+                                "Admin Name",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: size.height * 0.02),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: size.width,
+                    height: size.height * 0.9,
+                    child: pages[index],
+                  )
+                ],
+              )
+
             ),
           ],
         ));
