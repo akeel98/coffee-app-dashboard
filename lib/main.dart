@@ -51,7 +51,9 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: isLogin == true ? const HomeScreen() : const SignUpScreen());
+        home: FirebaseAuth.instance.currentUser == null ? const SignUpScreen() : const HomeScreen()
+    );
+        //isLogin == true ? const HomeScreen() : const SignUpScreen());
   }
 }
 
